@@ -6,17 +6,12 @@
 #include <mosaic/mosaic.h>
 #include <mosaic/stream_io.h>
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include <cairo/cairo.h>
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-/*   SDL stuff   */
-
-/// Inits SDL stuff
-int InitSDL ();
-/// Quit SDL, to be executed at exit
-void QuitSDL ();
+void CreateAndSavePNG (MOSAIC *img, const char *output);
 
 #endif
