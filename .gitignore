@@ -1,0 +1,12 @@
+# executables, object files
+build/
+# text backups (and vim stuff)
+*~
+*.swp
+tags
+cscope.out
+
+# scons stuff
+*scon*
+
+html

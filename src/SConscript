@@ -1,0 +1,11 @@
+# Mos2img build script
+Import ('env')
+
+src = Glob ('*.c')
+mos2img = env.Program ('mos2img', src)
+
+env.Default (mos2img)
+
+## INSTALL ##
+env.Install ('/usr/bin', mos2img)
+env.Alias ('install', '/usr/bin')
