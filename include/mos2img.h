@@ -12,6 +12,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-void CreateAndSavePNG (MOSAIC *img, const char *output);
+/// The X padding, a space in pixels to pad from the left border
+#define X_PADDING 2
+
+/// Do all the work of processing the MOSAIC and turning it into a .png image
+void CreateAndSavePNG (MOSAIC *img, const char *output, char color, char transparent);
 
 #endif

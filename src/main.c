@@ -13,12 +13,14 @@ static struct argp_option options[] = {
 when piping from other program. Ignores file name."},
 	{"output", 'o', "output file", 0, "Name the output file name. \
 Default is `image.png'"},
+	{"transparent", 't', 0, 0, "Uses transparent as default background instead\
+of black."},
 	{ 0 }
 };
 /// Used by main to communicate with parse_opt
 struct arguments {
 	char *input, *output;
-	char color, stream;
+	char color, stream, transparent;
 };
 /// The parsing function
 error_t parse_opt (int key, char *arg, struct argp_state *state) {
@@ -30,6 +32,9 @@ error_t parse_opt (int key, char *arg, struct argp_state *state) {
 			break;
 		case 's':
 			argumentos->stream = 1;
+			break;
+		case 't':
+			argumentos->transparent = 1;
 			break;
 		case 'o':
 			argumentos->output = arg;
@@ -59,6 +64,7 @@ int main (int argc, char **argv) {
 	struct arguments arguments;
 	arguments.color = 0;
 	arguments.stream = 0;
+	arguments.transparent = 0;
 	arguments.output = default_file_name;
 	// parse arguments
 	argp_parse (&argp, argc, argv, 0, 0, &arguments);
@@ -86,7 +92,7 @@ int main (int argc, char **argv) {
 	}
 
 	if (load_result == 0) {
-		CreateAndSavePNG (img, arguments.output);
+		CreateAndSavePNG (img, arguments.output, arguments.color, arguments.transparent);
 	}
 	else if (load_result == ENODIMENSIONS) {
 		fprintf (stderr, "There are no dimensions in this file..."
