@@ -41,11 +41,18 @@ error_t parse_opt (int key, char *arg, struct argp_state *state) {
 			break;
 
 		case ARGP_KEY_ARG:
-			if (state->arg_num >= 1)
+			if (state->arg_num >= 1) {
 				/* Too many arguments. */
 				argp_usage (state);
-
+			}
 			argumentos->input = arg;
+			break;
+
+		case ARGP_KEY_END:
+			if (state->arg_num < 1 && !argumentos->stream) {
+				/* Too few arguments, if not waiting from stdin. */
+				argp_usage (state);
+			}
 			break;
 
 		default:
@@ -102,6 +109,7 @@ int main (int argc, char **argv) {
 		fprintf (stderr, "Couldn't load file. %s.\n", strerror (errno));
 	}
 
+	FreeMOSAIC (img);
 
 	return 0;
 }

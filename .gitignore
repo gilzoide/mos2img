@@ -9,4 +9,8 @@ cscope.out
 # scons stuff
 *scon*
 
+# images
+*.png
+*.mosi
+
 html
