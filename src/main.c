@@ -9,18 +9,20 @@ static char args_doc[] = "FILE";
 /// our options
 static struct argp_option options[] = {
 	{"color", 'c', 0, 0,  "Produce colored output."},
-	{"stream", 's', 0, 0, "Get mosaic in a stream fashion, perfect for \
-when piping from other program. Ignores file name."},
-	{"output", 'o', "output file", 0, "Name the output file name. \
-Default is `image.png'"},
 	{"transparent", 't', 0, 0, "Uses transparent as default background instead\
 of black."},
+	{"font-size", 'f', "font size", 0, "Set the font size. Default is `30.0'."},
+	{"output", 'o', "output file", 0, "Name the output file name. \
+Default is `image.png'."},
+	{"stream", 's', 0, 0, "Get mosaic in a stream fashion, perfect for \
+when piping from other program. Ignores file name."},
 	{ 0 }
 };
 /// Used by main to communicate with parse_opt
 struct arguments {
 	char *input, *output;
 	char color, stream, transparent;
+	double font_size;
 };
 /// The parsing function
 error_t parse_opt (int key, char *arg, struct argp_state *state) {
@@ -38,6 +40,9 @@ error_t parse_opt (int key, char *arg, struct argp_state *state) {
 			break;
 		case 'o':
 			argumentos->output = arg;
+			break;
+		case 'f':
+			argumentos->font_size = atof (arg);
 			break;
 
 		case ARGP_KEY_ARG:
@@ -72,6 +77,7 @@ int main (int argc, char **argv) {
 	arguments.color = 0;
 	arguments.stream = 0;
 	arguments.transparent = 0;
+	arguments.font_size = 30;
 	arguments.output = default_file_name;
 	// parse arguments
 	argp_parse (&argp, argc, argv, 0, 0, &arguments);
@@ -99,7 +105,8 @@ int main (int argc, char **argv) {
 	}
 
 	if (load_result == 0) {
-		CreateAndSavePNG (img, arguments.output, arguments.color, arguments.transparent);
+		CreateAndSavePNG (img, arguments.output, arguments.font_size,
+				arguments.color, arguments.transparent);
 	}
 	else if (load_result == ENODIMENSIONS) {
 		fprintf (stderr, "There are no dimensions in this file..."
