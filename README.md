@@ -2,10 +2,10 @@ mos2img
 =======
 
 A utility to convert Mosaics (asc art) into images. It's built upon 
-libmosaic and SDL2.
+libmosaic and cairo.
 
 Run dependencies: [libmosaic](https://github.com/gilzoide/libmosaic),
-[SDL2] (http://www.libsdl.org/).
+[cairo] (http://cairographics.org/).
 
 Build dependencies: [scons](http://www.scons.org/).
 
