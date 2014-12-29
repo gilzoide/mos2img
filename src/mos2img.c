@@ -57,7 +57,6 @@ void CreateAndSavePNG (MOSAIC *img, const char *output, double font_size, char c
 	mos_attr attr, bold;	// auxiliary for the attr
 	mos2img_color_t color;	// and one more
 	for (i = 0; i < img->height; i++) {
-		// those literal numbers are tottally arbitrary
 		cairo_move_to (cr, 0, fe.ascent + i * char_height);
 		for (j = 0; j < img->width; j++) {
 			if (colored) {
@@ -96,6 +95,7 @@ void getRgba (mos2img_color_t *color, mos_attr attr) {
 	mos_attr fore = GetFore (attr);
 	mos_attr back = GetBack (attr);
 
+	// colors table. Note that it skips Normal, so use `attr - 1' to index it
 	const char colors_rgb[][3] = {
 		{0, 0, 0},
 		{1, 0, 0},

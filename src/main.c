@@ -8,14 +8,14 @@ static char doc[] = "A utility to convert *.mosi files into images.";
 static char args_doc[] = "FILE";
 /// our options
 static struct argp_option options[] = {
-	{"color", 'c', 0, 0,  "Produce colored output."},
-	{"transparent", 't', 0, 0, "Uses transparent as default background instead\
-of black."},
-	{"font-size", 'f', "font size", 0, "Set the font size. Default is `30.0'."},
-	{"output", 'o', "output file", 0, "Name the output file name. \
+	{"font-size", 'f', "size", 0, "Set the font size. Default is `30.0'."},
+	{"no-color", 'n', 0, 0,  "Produce monochromatic output."},
+	{"output", 'o', "file", 0, "The output file name. \
 Default is `image.png'."},
 	{"stream", 's', 0, 0, "Get mosaic in a stream fashion, perfect for \
 when piping from other program. Ignores file name."},
+	{"transparent", 't', 0, 0, "Uses transparent as default background instead \
+of black."},
 	{ 0 }
 };
 /// Used by main to communicate with parse_opt
@@ -29,8 +29,8 @@ error_t parse_opt (int key, char *arg, struct argp_state *state) {
 	struct arguments *argumentos = (struct arguments*) state->input;
 
 	switch (key) {
-		case 'c':
-			argumentos->color = 1;
+		case 'n':
+			argumentos->color = 0;
 			break;
 		case 's':
 			argumentos->stream = 1;
@@ -74,7 +74,7 @@ int main (int argc, char **argv) {
 	char *default_file_name = "image.png";
 
 	struct arguments arguments;
-	arguments.color = 0;
+	arguments.color = 1;
 	arguments.stream = 0;
 	arguments.transparent = 0;
 	arguments.font_size = 30;
