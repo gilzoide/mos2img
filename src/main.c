@@ -4,7 +4,7 @@
 /*   Argp stuff   */
 const char *argp_program_version = "mos2img 0.1.0";
 const char *argp_program_bug_address = "<gilzoide@gmail.com>";
-static char doc[] = "A utility to convert *.mosi files into images.";
+static char doc[] = "A utility to convert *.mosi files into png images.";
 static char args_doc[] = "FILE";
 /// our options
 static struct argp_option options[] = {

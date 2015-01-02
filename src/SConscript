@@ -4,8 +4,15 @@ Import ('env')
 src = Glob ('*.c')
 mos2img = env.Program ('mos2img', src)
 
-env.Default (mos2img)
+# man page
+man = 'mos2img.1'
+zipman = env.Command (man + '.gz', man, 'gzip -c $SOURCE > $TARGET')
+
+env.Default ([mos2img, zipman])
 
 ## INSTALL ##
 env.Install ('/usr/bin', mos2img)
-env.Alias ('install', '/usr/bin')
+env.Install ('/usr/share/man/man1', zipman)
+env.Alias ('install-man', '/usr/share/man')
+env.Alias ('install-bin', '/usr/bin')
+env.Alias ('install', ['install-bin', 'install-man'])

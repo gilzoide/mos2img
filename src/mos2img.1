@@ -1,0 +1,38 @@
+.\" Man page for mos2img
+.TH MOS2IMG 1 "December 2014"
+.SH NAME
+mos2img \- a utility to convert Mosaic asc arts into images.
+.SH SYNOPSIS
+.B mos2img
+[-f|--font-size=size] [-n|--no-color] [-o|--output=file] [-s|--stream]
+[-t|--transparent] [-?|--help] [--usage] [-V|--version] FILE
+.SH DESCRIPTION
+Converts a mosaic (.mosi) file format into a png image file.
+.SH OPTIONS
+Mandatory arguments to long options are mandatory for short options too.
+.TP
+\fB\-f\fR, \fP\-\-font\-size\fR=\fIsize\fR
+Set the font size. Default is `30.0'
+.TP
+\fB\-n\fR, \fP\-\-no\-color\fR
+Produce monochromatic output
+.TP
+\fB\-o\fR, \fP\-\-output\fR=\fIfile\fR
+The output file name. Default is `image.png'
+.TP
+\fB\-s\fR, \fP\-\-stream\fR
+Get mosaic in a stream fashion from \fIstdin\fP, perfect for when piping from other program. Ignores file name
+.TP
+\fB\-t\fR, \fP\-\-transparent\fR
+Uses transparent as default background instead of black
+.TP
+\fB\-?\fR, \fP\-\-help\fR
+Give the help list
+.TP
+\fB\-\-usage\fR
+Give a short usage message
+.TP
+\fB\-V\fR, \fP\-\-version\fR
+Print program version
+.SH AUTHOR
+gilzoide <gilzoide@gmail.com>
