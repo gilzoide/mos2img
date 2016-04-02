@@ -71,6 +71,9 @@ void CreateAndSavePNG (MOSAIC *img, const char *output, double font_size, char c
 				//   Draw the char
 				// bold?
 				bold = extractBold (&attr);
+				// ignore underline
+				extractUnderline (&attr);
+
 				cairo_select_font_face (cr, "monospace", CAIRO_FONT_SLANT_NORMAL,
 						bold ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 				cairo_set_source_rgb (cr, color.fr, color.fg, color.fb);
